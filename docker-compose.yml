@@ -1,0 +1,50 @@
+version: "3.9"
+
+networks:
+  geoportal:
+    driver: bridge
+
+services:
+  postgis:
+    image: postgis/postgis:16-3.4
+    container_name: postgis
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: geodb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    networks: [geoportal]
+
+  geoserver:
+    image: kartoza/geoserver:2.24.2
+    container_name: geoserver
+    restart: unless-stopped
+    depends_on:
+      - postgis
+    environment:                 # <-- mapping (CLAVE: valor)
+      GEOSERVER_ADMIN_USER: admin
+      GEOSERVER_ADMIN_PASSWORD: geoserver
+      # JAVA_OPTS: "-Xms512m -Xmx2g"  # opcional
+    ports:
+      - "8081:8080"
+    volumes:
+      - geoserver_data:/var/lib/geoserver
+    networks: [geoportal]
+
+  mapstore:
+    image: geosolutionsit/mapstore2:latest
+    container_name: mapstore
+    restart: unless-stopped
+    depends_on:
+      - geoserver
+    ports:
+      - "8080:8080"
+    networks: [geoportal]
+
+volumes:
+  pg_data:
+  geoserver_data:
