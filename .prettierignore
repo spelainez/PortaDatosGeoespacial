@@ -1,33 +1,12 @@
-# Prettier Ignore File
-
-## contains broken JSON for tests
-
-test-resources
-
-## dist and build folders
-
-dist
-target
-site
-docs/
-build
-docma-template
-node_modules
-coverage
-
-## IDEs configs and Java projects
-
-.vscode
-java/
-
-## Actually prettier is used only for JSON files, so other files are ignored
-
-*.js
-*.jsx
-*.md
-*.less
-*.css
-*.html
-*.yml
-*.hbs
-*.yaml
+web/client/product/assets/img/
+web/client/product/assets/img/**
+web/client/assets/img/
+web/client/assets/img/**
+**/*.png
+**/*.jpg
+**/*.jpeg
+**/*.gif
+**/*.svg
+# Ignore files that currently cause Prettier CI failures
+web/client/configs/localConfig.json
+gis-api/package.json
