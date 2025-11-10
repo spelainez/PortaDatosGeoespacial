@@ -1,0 +1,22 @@
+body { background: hsl(0 0% 98%); }
+
+.ms-resources-grid .ms-card {
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,.06);
+  border: 1px solid #eef2f7;
+}
+.ms-resources-grid .ms-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.08);
+}
+
+.ms-resources-grid .ms-header-title,
+.ms-home-description h1,
+.ms-brand-navbar .navbar-brand {
+  font-weight: 800;
+  letter-spacing: .2px;
+}
+
+#footer-attribution-container, #footer-scalebar-container {
+  filter: saturate(.9) opacity(.9);
+}
